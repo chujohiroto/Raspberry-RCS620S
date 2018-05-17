@@ -17,6 +17,7 @@ int main()
     
     //読み取り部分
     char s[256] = {'\0'};
+    char p[256] = {'\0'};
     do
     {
         //ここで読み取る
@@ -24,10 +25,14 @@ int main()
 
         if (ret)
         {
+            uint8_t *pmm = rcs620s.pmm;
             //idを取得
             uint8_t *idm = rcs620s.idm;
             //変数sに出力
-            sprintf(s, "%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x\n",
+            sprintf(p, "PMm:  %02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x\n",
+                    pmm[0], pmm[1], pmm[2], pmm[3],
+                    pmm[4], pmm[5], pmm[6], pmm[7]);
+            sprintf(s, "IDm:  %02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x\n",
                     idm[0], idm[1], idm[2], idm[3],
                     idm[4], idm[5], idm[6], idm[7]);
         }
@@ -37,6 +42,8 @@ int main()
     
     //出力
     printf(s);
+
+    printf(p);
 
     //読み取りをオフにする
     rcs620s.rfOff();
