@@ -21,4 +21,4 @@ $ ./getIDm
 
 記事を基本参照だが、そのままでは動作しない点があったので、Makefileとソースコードを一部書き換えている。
 
-BSD 3-Clause "New" or "Revised" License
+
