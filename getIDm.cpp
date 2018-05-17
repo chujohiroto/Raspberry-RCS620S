@@ -2,6 +2,8 @@
 #include <string>
 #include <string.h>
 #include "RCS620S.h"
+#include "unistd.h"
+#include <stdlib.h>
 
 int main()
 {
@@ -16,13 +18,21 @@ int main()
     }
     
     //読み取り部分
-    char s[256] = {'\0'};
-    char p[256] = {'\0'};
-    do
-    {
+    char *s;
+    char *p;
+    
+    
+    s = (char*)calloc(256,sizeof(char));
+    p = (char*)calloc(256,sizeof(char));
+    
+
+    if (s==NULL || p ==NULL) {
+        return 0;
+    }
+    
+    while (true){
         //ここで読み取る
         ret = rcs620s.polling();
-
         if (ret)
         {
             uint8_t *pmm = rcs620s.pmm;
@@ -36,17 +46,26 @@ int main()
                     idm[0], idm[1], idm[2], idm[3],
                     idm[4], idm[5], idm[6], idm[7]);
         }
-        
-    } //出力がなければ、繰り返し
-    while (strlen(s) == 0);
-    
-    //出力
-    printf(s);
-
-    printf(p);
+        if (strlen(s) != 0) {
+            //出力
+            printf(p);
+            printf(s);
+            free(s);
+            free(p);
+            
+            s = (char*)calloc(256,sizeof(char));
+            p = (char*)calloc(256,sizeof(char));
+            
+            sleep(3);
+        }
+    }
 
     //読み取りをオフにする
     rcs620s.rfOff();
+    
+    free(s);
+    free(p);
 
     return 0;
 }
+
