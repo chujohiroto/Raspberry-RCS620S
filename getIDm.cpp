@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string>
+#include <string.h>
 #include "RCS620S.h"
 
 int main()
@@ -35,7 +36,7 @@ int main()
     while (strlen(s) == 0);
     
     //出力
-    printf("%02x", s);
+    printf(s);
 
     //読み取りをオフにする
     rcs620s.rfOff();
