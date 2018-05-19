@@ -22,3 +22,6 @@ $ ./getIDm
 記事を基本参照だが、そのままでは動作しない点があったので、Makefileとソースコードを一部書き換えている。
 
 
+追記　Python対応
+https://qiita.com/rukihena/items/476d48e1e8d8fc6b98bf#_reference-e396793bfda9cc109c2c
+上記の記事参照
