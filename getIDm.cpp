@@ -31,7 +31,8 @@ int main()
     }
     
     while (true){
-        //ここで読み取る
+        
+        usleep(10000);
         ret = rcs620s.polling();
         if (ret)
         {
